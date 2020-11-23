@@ -17,10 +17,6 @@ const exStore = {
 }
 
 const App = () => {
-  useEffect(() => {
-    store.dispatch(dynamicReducerActions.addReducer('main'))
-    store.dispatch(mainActions.boot('main'))
-  })
   return <Provider store={exStore} >
     <Container />
   </Provider>
