@@ -1,0 +1,37 @@
+{
+  "name": "use-store-path",
+  "version": "0.1.0",
+  "description": "react hook for subscribe to redux path",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "files": [
+    "lib",
+    "es",
+    "src"
+  ],
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simprl/use-store-path.git"
+  },
+  "keywords": [
+    "react",
+    "hook",
+    "subscribe",
+    "path"
+  ],
+  "author": "simprl",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/simprl/use-store-path/issues"
+  },
+  "homepage": "https://github.com/simprl/use-store-path#readme",
+  "dependencies": {
+    "react": ">=16.0.0"
+  },
+  "devDependencies": {
+    "rollup": "^2.33.3"
+  }
+}
