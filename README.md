@@ -6,7 +6,7 @@ when specified path in the store changed
 
 ```jsx
 import { createStore } from 'redux';
-import { Provider } from 'react-redux';
+import { Provider, useStore } from 'react-redux';
 import { getUseStorePath } from 'use-store-path';
 
 const store = createStore(reduce );

@@ -1,7 +1,7 @@
 {
   "name": "use-store-path",
-  "version": "0.1.1",
-  "description": "react hook for subscribe to redux path",
+  "version": "0.1.2",
+  "description": "useStorePath - react hook for subscribe to redux path",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
@@ -18,9 +18,12 @@
   },
   "keywords": [
     "react",
+    "redux",
     "hook",
     "subscribe",
-    "path"
+    "path",
+    "use",
+    "useStorePath"
   ],
   "author": "simprl",
   "license": "MIT",
