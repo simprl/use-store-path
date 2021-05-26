@@ -1,5 +1,6 @@
-export default ({ getState, subscribe }) => {
+const getSubscribePath = ({ getState, subscribe }) => {
   const listeners = new Map();
+  const fireQueue = [];
   const subscribePath = (path, subscription) => {
     let listener;
     let curListeners = listeners;
@@ -11,7 +12,7 @@ export default ({ getState, subscribe }) => {
         curListeners.set(name, listener);
       }
       curListeners = listener.children;
-      state = state?.[name];
+      state = state && state[name];
     });
     if (listener) {
       listener.subscribes.push(subscription);
@@ -27,19 +28,25 @@ export default ({ getState, subscribe }) => {
   const fire = (prevState, state, subListeners) => {
     // eslint-disable-next-line no-restricted-syntax
     for (const [name, listener] of subListeners.entries()) {
-      const prevSubState = prevState?.[name];
-      const subState = state?.[name];
+      const prevSubState = prevState && prevState[name];
+      const subState = state && state[name];
       if (prevSubState !== subState) {
-        listener.subscribes.forEach((subscription) => subscription(subState));
+        fireQueue.push(...listener.subscribes.map((subscription) => subscription.bind(null, subState)));
         fire(prevSubState, subState, listener.children);
       }
     }
   };
 
+  const processQueue = () => {
+    while (fireQueue.length > 0) fireQueue.shift()();
+  };
+
   let prevState = null;
   const changeHandler = () => {
     const state = getState();
+    const isWasEmpty = fireQueue.length === 0;
     fire(prevState, state, listeners);
+    if (isWasEmpty) processQueue();
     prevState = state;
   };
 
@@ -47,3 +54,5 @@ export default ({ getState, subscribe }) => {
 
   return subscribePath;
 };
+
+export default getSubscribePath;
