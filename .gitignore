@@ -1,6 +1,8 @@
 .DS_Store
 *.log
 node_modules
+out-tsc
+dts
 lib
 es
 .idea
