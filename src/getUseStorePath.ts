@@ -2,28 +2,13 @@ import { useEffect, useMemo, useState } from 'react';
 import getSubscribePath from './getSubscribePath';
 import {Store} from "redux";
 
-interface RefInterface {
-    set?: (v: unknown) => void;
-}
-
 const getUseStorePath = <S = any>(store: Store<S>) => {
-  const subscribePath = getSubscribePath(store);
+  const { subscribePath, initStateGetter } = getSubscribePath(store);
   return (path: string[]) => {
-    const [ref, initValue, clear] = <[RefInterface, unknown, () => void]>useMemo(
-        () => [
-          {},
-          ...subscribePath(path, (v) => {
-              if(ref.set) {
-                  ref.set(v);
-              }
-          }),
-        ],
-        path
-    );
-    const [v, set] = useState(initValue);
-    ref.set = set;
-    useEffect(() => clear, [clear]);
-    return v;
+      const initState = useMemo(initStateGetter(path), path)
+      const [v, set] = useState(initState);
+      useEffect(() => subscribePath(path, (v) => set(() => v)), path);
+      return v;
   };
 };
 

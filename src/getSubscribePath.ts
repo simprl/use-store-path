@@ -15,10 +15,18 @@ interface QueueFunc {
 const getSubscribePath = <S = any>({ getState, subscribe }: Store<S>) => {
   const rootListener: Listener = { subscribes: [], children: new Map() };
   const fireQueue: QueueFunc[] = [];
+
+  const initStateGetter = (path: string[]) => () => {
+    let state: unknown = getState();
+    path.forEach((name) => {
+      state = state && (state as Record<string, unknown>)[name];
+    });
+    return state;
+  }
+
   const subscribePath = (path: string[], subscription: Subscription) => {
     let listener = rootListener;
     let curListeners = listener.children;
-    let state: unknown = getState();
     path.forEach((name) => {
       const maybeListener = curListeners.get(name);
       if (maybeListener === undefined) {
@@ -28,15 +36,11 @@ const getSubscribePath = <S = any>({ getState, subscribe }: Store<S>) => {
         listener = maybeListener
       }
       curListeners = listener.children;
-      state = state && (state as Record<string, unknown>)[name];
     });
     listener.subscribes.push(subscription);
-    return [
-      state,
-      () => {
-        listener.subscribes.splice(listener.subscribes.indexOf(subscription), 1);
-      },
-    ];
+    return () => {
+      listener.subscribes.splice(listener.subscribes.indexOf(subscription), 1);
+    };
   };
 
   const fire = (prevState: unknown, state: unknown, { subscribes, children }: Listener) => {
@@ -74,7 +78,7 @@ const getSubscribePath = <S = any>({ getState, subscribe }: Store<S>) => {
 
   subscribe(changeHandler);
 
-  return subscribePath;
+  return { subscribePath, initStateGetter };
 };
 
 export default getSubscribePath;
