@@ -3,12 +3,16 @@ import getSubscribePath from './getSubscribePath';
 import {Store} from "redux";
 
 const getUseStorePath = <S = any>(store: Store<S>) => {
-  const { subscribePath, initStateGetter } = getSubscribePath(store);
+  const { subscribePath, getStateByPath } = getSubscribePath(store);
   return (path: string[]) => {
-      const initState = useMemo(initStateGetter(path), path)
-      const [v, set] = useState(initState);
-      useEffect(() => subscribePath(path, (v) => set(() => v)), path);
-      return v;
+      const initState = useMemo(() => getStateByPath(path), [])
+      const [value, set] = useState(initState);
+      useEffect(() => {
+          const clear = subscribePath(path, (value) => set(() => value));
+          set(() => getStateByPath(path));
+          return clear;
+      }, path);
+      return value;
   };
 };
 
