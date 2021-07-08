@@ -26,6 +26,21 @@ const Container = () => {
   const { useStorePath } = useStore()
   const value1 = useStorePath([ 'path', 'to', 'value1' ])
   const value2 = useStorePath([ 'path', 'to', 'value2' ])
-  return <Component value={value} value2={value2} />
+  return <Component value={value1} value2={value2} />
+}
+```
+
+### Usage with Typescript
+```tsx
+interface Value {
+    x: number;
+    y: number;
+}
+
+const Container = () => {
+  const { useStorePath } = useStore()
+  const value1 = useStorePath<Value>([ 'path', 'to', 'value1' ])
+  const value2 = useStorePath<Value>([ 'path', 'to', 'value2' ])
+  return <Component value={value1} value2={value2} />
 }
 ```

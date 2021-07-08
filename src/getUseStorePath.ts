@@ -4,7 +4,7 @@ import {Store} from "redux";
 
 const getUseStorePath = <S = any>(store: Store<S>) => {
   const { subscribePath, getStateByPath } = getSubscribePath(store);
-  return (path: string[]) => {
+  return <T = unknown>(path: string[]): T => {
       const initState = useMemo(() => getStateByPath(path), [])
       const [value, set] = useState(initState);
       useEffect(() => {
@@ -12,7 +12,7 @@ const getUseStorePath = <S = any>(store: Store<S>) => {
           set(() => getStateByPath(path));
           return clear;
       }, path);
-      return value;
+      return value as T;
   };
 };
 
