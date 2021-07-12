@@ -44,3 +44,30 @@ const Container = () => {
   return <Component value={value1} value2={value2} />
 }
 ```
+
+### You can use only 'redux' and 'use-store-path' libraries without 'react-redux'
+```tsx
+import { createStore } from 'redux';
+import { getUseStorePath } from 'use-store-path';
+
+const { dispatch, getState } = createStore(reduce);
+const exStore = {
+  ...store,
+  useStorePath: getUseStorePath(store),
+}
+export const StoreContext = createContext<typeof extandedStore>(extandedStore);
+export const useAppStore = () => useContext(StoreContext);
+
+const App = () => {
+  return <StoreContext.Provider store={exStore} >
+    <Container />
+  </StoreContext.Provider>
+}
+
+const Container = () => {
+  const { useStorePath, dispatch } = useAppStore()
+  const value1 = useStorePath([ 'path', 'to', 'value1' ])
+  const value2 = useStorePath([ 'path', 'to', 'value2' ])
+  return <Component value={value1} value2={value2} onChange={() => dispatch(actionX())} />
+}
+```
