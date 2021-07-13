@@ -71,3 +71,26 @@ const Container = () => {
   return <Component value={value1} value2={value2} onChange={() => dispatch(actionX())} />
 }
 ```
+
+## API
+
+### getUseStorePath({ getState, subscribe });
+
+#### Parameters:
+
+**getState()** - Function that return root state. (See redux documentation)
+
+**subscribe(listener)** - Function that adds a change listener. (See redux documentation)
+#### Returns:
+
+Hook **useStorePath()**
+
+### useStorePath(path: string[]): any;
+
+#### Parameters:
+
+**path: string[]** - Path to the value in the state.
+
+#### Returns:
+
+Value in the selected path. If value not exists, return **undefined**
