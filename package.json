@@ -1,6 +1,6 @@
 {
   "name": "use-store-path",
-  "version": "0.1.15",
+  "version": "0.1.17",
   "description": "useStorePath - react hook for subscribe to redux path",
   "main": "lib/index.js",
   "module": "es/index.js",

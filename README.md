@@ -74,13 +74,14 @@ const Container = () => {
 
 ## API
 
-### getUseStorePath({ getState, subscribe });
+### getUseStorePath({ subscribe, getState });
 
 #### Parameters:
 
+**subscribe(listener)** - Function that adds a change listener. (See redux documentation)
+
 **getState()** - Function that return root state. (See redux documentation)
 
-**subscribe(listener)** - Function that adds a change listener. (See redux documentation)
 #### Returns:
 
 Hook **useStorePath()**
@@ -94,3 +95,32 @@ Hook **useStorePath()**
 #### Returns:
 
 Value in the selected path. If value not exists, return **undefined**
+
+## How it work
+
+This library contains method **getSubscribePath({ subscribe, getState })**.  
+This function
+1. add listener for the changes in the redux store
+2. return 2 methods:
+    * **subscribePath(path: string[], subscription: Subscription)**
+    * **getStateByPath(path: string[])**
+
+**subscribePath** - Function that adds subscription into internal object by specified path
+For example after call:
+```js
+subscribePath([], subscription1)
+subscribePath(['a','b'], subscription2)
+subscribePath(['a','c'], subscription3)
+subscribePath(['a','c'], subscription4)
+```
+will created rootListener:
+```
+{
+    subscribes: [ subscription1 ], children: {
+        a: { subscribes: [], children: {
+            b: { subscribes: [ subscription2 ] }
+            c: { subscribes: [ subscription3, subscription4 ] }
+        }}
+    }
+}
+```
