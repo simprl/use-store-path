@@ -1,6 +1,9 @@
-# use-store-path
+# useStorePath
 Subscribe to redux store and force redraw component
 when specified path in the store changed
+
+[![](https://img.shields.io/npm/l/use-store-path.svg?style=flat)](https://github.com/simprl/use-store-path/blob/main/LICENSE)
+[![](https://img.shields.io/npm/v/use-store-path.svg?style=flat)](https://www.npmjs.com/package/use-store-path)
 
 # Usage
 
