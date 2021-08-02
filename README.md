@@ -116,7 +116,7 @@ subscribePath(['a','b'], subscription2)
 subscribePath(['a','c'], subscription3)
 subscribePath(['a','c'], subscription4)
 ```
-will created rootListener:
+Will created rootListener:
 ```
 {
     subscribes: [ subscription1 ], children: {
@@ -127,3 +127,6 @@ will created rootListener:
     }
 }
 ```
+When redux state changed, then recursive iterate rootListener and compare previous and new state on each node.
+If state of this node changed, then subscription add to the fireQueue, and recursive iterate children nodes.
+Then subscriptions one by one pull from fireQueue and call.
