@@ -127,6 +127,8 @@ Will created rootListener:
     }
 }
 ```
-When redux state changed, then recursive iterate rootListener and compare previous and new state on each node.
+When redux state changed, then iterate rootListener and compare previous and new state on each node.
+
 If state of this node changed, then subscription add to the fireQueue, and recursive iterate children nodes.
+
 Then subscriptions one by one pull from fireQueue and call.
