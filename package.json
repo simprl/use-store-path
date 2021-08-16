@@ -1,6 +1,6 @@
 {
   "name": "use-store-path",
-  "version": "0.1.21",
+  "version": "1.0.1",
   "description": "useStorePath - react hook for subscribe to redux path",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -11,7 +11,8 @@
     "dts"
   ],
   "scripts": {
-    "build": "rimraf dist && tsc && rollup -c rollup.config.js"
+    "build": "rimraf dist && tsc && rollup -c rollup.config.js",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -36,10 +37,17 @@
     "react": ">=16.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "@babel/preset-typescript": "^7.15.0",
     "@open-wc/building-rollup": "^1.10.0",
+    "@types/jest": "^27.0.1",
     "@types/react": "^17.0.11",
     "@types/redux": "^3.6.0",
+    "babel-jest": "^27.0.6",
     "deepmerge": "^4.2.2",
+    "jest": "^27.0.6",
+    "redux": "^4.1.1",
     "rimraf": "^3.0.2",
     "rollup": "^2.33.3",
     "typescript": "^4.3.4"
