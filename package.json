@@ -1,6 +1,6 @@
 {
   "name": "use-store-path",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "useStorePath - react hook for subscribe to redux path",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -12,7 +12,8 @@
   ],
   "scripts": {
     "build": "rimraf dist && tsc && rollup -c rollup.config.js",
-    "test": "jest"
+    "test": "jest",
+    "coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",

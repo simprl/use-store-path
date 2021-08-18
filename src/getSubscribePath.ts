@@ -71,9 +71,10 @@ const getSubscribePath = <S = any>({ getState, subscribe }: Store<S>) => {
   const changeHandler = () => {
     const state = getState();
     const isWasEmpty = fireQueue.length === 0;
-    fire(prevState, state, rootListener);
-    if (isWasEmpty) processQueue();
+    const _prevState = prevState
     prevState = state;
+    fire(_prevState, state, rootListener);
+    if (isWasEmpty) processQueue();
   };
 
   subscribe(changeHandler);
