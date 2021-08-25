@@ -23,7 +23,7 @@ describe('getSubscribePath', () => {
         expect(getStateByPath(['x', 'y_', 'v'])).toBeUndefined();
     });
 
-    test('getStateByPath', () => {
+    test('subscribePath', () => {
         const { subscribePath, getStateByPath } = obj;
 
         const subscription1 = jest.fn();
@@ -71,20 +71,29 @@ describe('getSubscribePath', () => {
         expect(subscription1).toBeCalledTimes(3);
         expect(subscription2).toBeCalledTimes(4);
         expect(subscriptionRoot).toBeCalledTimes(5);
+    });
 
-        const subscription3 = jest.fn((v2) => {
-            store.dispatch({type: 'set', payload: {x: {y: { v: `${v2}_from_queue`, v2 }}} })
+    test('subscribePath when dispatch from dispatch', () => {
+        const { subscribePath, getStateByPath } = obj;
+
+        const subscription1 = jest.fn((v2) => {
+            store.dispatch({type: 'set', payload: {x: {y: { v: `${v2}_from_queue1`, v2 }}} })
+            store.dispatch({type: 'set', payload: {x: {y: { v: `${v2}_from_queue2`, v2 }}} })
         });
-        subscribePath(['x', 'y', 'v2'], subscription3)
+        const clear1 = subscribePath(['x', 'y', 'v2'], subscription1)
+        const subscription2 = jest.fn();
+        const clear2 = subscribePath(['x', 'y', 'v2'], subscription2)
 
-        store.dispatch({type: 'set', payload: {x: {y: { v: 'value6', v2: 'value7'}}} })
-        store.dispatch({type: 'set', payload: {x: {y: { v: 'value6', v2: 'value8'}}} })
-        expect(subscription2).toBeCalledTimes(7);
-        expect(subscription3).toBeCalledTimes(2);
+        store.dispatch({type: 'set', payload: {x: {y: { v: 'value7', v2: 'value7'}}} })
 
-        expect(getStateByPath(['x', 'y', 'v'])).toBe('value8_from_queue');
+        store.dispatch({type: 'set', payload: {x: {y: { v: 'value7', v2: 'value8'}}} })
+        expect(subscription1).toBeCalledTimes(2);
+        expect(subscription2).toBeCalledTimes(2);
+
+        expect(getStateByPath(['x', 'y', 'v'])).toBe('value8_from_queue2');
         expect(getStateByPath(['x', 'y', 'v2'])).toBe('value8');
 
-
+        clear1();
+        clear2();
     });
 });

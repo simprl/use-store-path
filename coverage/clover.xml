@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1629319476543" clover="3.2.0">
-  <project timestamp="1629319476543" name="All files">
-    <metrics statements="110" coveredstatements="92" conditionals="36" coveredconditionals="32" methods="36" coveredmethods="22" elements="182" coveredelements="146" complexity="0" loc="110" ncloc="110" packages="2" files="6" classes="6"/>
+<coverage generated="1629926416042" clover="3.2.0">
+  <project timestamp="1629926416042" name="All files">
+    <metrics statements="109" coveredstatements="91" conditionals="32" coveredconditionals="32" methods="36" coveredmethods="22" elements="177" coveredelements="145" complexity="0" loc="109" ncloc="109" packages="2" files="6" classes="6"/>
     <package name="out-tsc">
-      <metrics statements="55" coveredstatements="46" conditionals="18" coveredconditionals="16" methods="18" coveredmethods="11"/>
+      <metrics statements="55" coveredstatements="46" conditionals="16" coveredconditionals="16" methods="18" coveredmethods="11"/>
       <file name="getSubscribePath.js" path="C:\w_bimp\use-store-path\out-tsc\getSubscribePath.js">
-        <metrics statements="45" coveredstatements="45" conditionals="18" coveredconditionals="16" methods="11" coveredmethods="11"/>
+        <metrics statements="45" coveredstatements="45" conditionals="16" coveredconditionals="16" methods="11" coveredmethods="11"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -15,42 +15,42 @@
         <line num="7" count="12" type="cond" truecount="2" falsecount="0"/>
         <line num="9" count="4" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
-        <line num="12" count="4" type="stmt"/>
-        <line num="13" count="4" type="stmt"/>
-        <line num="14" count="4" type="stmt"/>
-        <line num="15" count="9" type="stmt"/>
-        <line num="16" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="12" count="5" type="stmt"/>
+        <line num="13" count="5" type="stmt"/>
+        <line num="14" count="5" type="stmt"/>
+        <line num="15" count="12" type="stmt"/>
+        <line num="16" count="12" type="cond" truecount="2" falsecount="0"/>
         <line num="17" count="4" type="stmt"/>
         <line num="18" count="4" type="stmt"/>
-        <line num="21" count="5" type="stmt"/>
-        <line num="23" count="9" type="stmt"/>
-        <line num="25" count="4" type="stmt"/>
-        <line num="26" count="4" type="stmt"/>
-        <line num="27" count="2" type="stmt"/>
+        <line num="21" count="8" type="stmt"/>
+        <line num="23" count="12" type="stmt"/>
+        <line num="25" count="5" type="stmt"/>
+        <line num="26" count="5" type="stmt"/>
+        <line num="27" count="4" type="stmt"/>
         <line num="30" count="1" type="stmt"/>
-        <line num="31" count="34" type="cond" truecount="2" falsecount="0"/>
-        <line num="32" count="29" type="cond" truecount="2" falsecount="0"/>
-        <line num="33" count="14" type="stmt"/>
-        <line num="35" count="29" type="cond" truecount="2" falsecount="0"/>
-        <line num="36" count="22" type="stmt"/>
-        <line num="37" count="24" type="cond" truecount="2" falsecount="0"/>
-        <line num="38" count="24" type="cond" truecount="2" falsecount="0"/>
-        <line num="39" count="24" type="stmt"/>
+        <line num="31" count="54" type="cond" truecount="2" falsecount="0"/>
+        <line num="32" count="47" type="cond" truecount="2" falsecount="0"/>
+        <line num="33" count="22" type="stmt"/>
+        <line num="35" count="47" type="cond" truecount="2" falsecount="0"/>
+        <line num="36" count="34" type="stmt"/>
+        <line num="37" count="40" type="cond" truecount="2" falsecount="0"/>
+        <line num="38" count="40" type="cond" truecount="2" falsecount="0"/>
+        <line num="39" count="40" type="stmt"/>
         <line num="44" count="1" type="stmt"/>
         <line num="45" count="10" type="stmt"/>
-        <line num="46" count="14" type="stmt"/>
-        <line num="47" count="14" type="cond" truecount="1" falsecount="1"/>
-        <line num="48" count="14" type="stmt"/>
-        <line num="52" count="1" type="stmt"/>
-        <line num="53" count="1" type="stmt"/>
-        <line num="54" count="10" type="stmt"/>
-        <line num="55" count="10" type="stmt"/>
-        <line num="56" count="10" type="stmt"/>
-        <line num="57" count="10" type="cond" truecount="1" falsecount="1"/>
+        <line num="46" count="22" type="stmt"/>
+        <line num="47" count="22" type="stmt"/>
+        <line num="50" count="1" type="stmt"/>
+        <line num="51" count="1" type="stmt"/>
+        <line num="52" count="14" type="stmt"/>
+        <line num="53" count="14" type="stmt"/>
+        <line num="54" count="14" type="stmt"/>
+        <line num="55" count="14" type="stmt"/>
+        <line num="56" count="14" type="stmt"/>
+        <line num="57" count="14" type="cond" truecount="2" falsecount="0"/>
         <line num="58" count="10" type="stmt"/>
-        <line num="59" count="10" type="stmt"/>
+        <line num="60" count="1" type="stmt"/>
         <line num="61" count="1" type="stmt"/>
-        <line num="62" count="1" type="stmt"/>
       </file>
       <file name="getUseStorePath.js" path="C:\w_bimp\use-store-path\out-tsc\getUseStorePath.js">
         <metrics statements="10" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>
@@ -70,9 +70,9 @@
       </file>
     </package>
     <package name="src">
-      <metrics statements="55" coveredstatements="46" conditionals="18" coveredconditionals="16" methods="18" coveredmethods="11"/>
+      <metrics statements="54" coveredstatements="45" conditionals="16" coveredconditionals="16" methods="18" coveredmethods="11"/>
       <file name="getSubscribePath.ts" path="C:\w_bimp\use-store-path\src\getSubscribePath.ts">
-        <metrics statements="45" coveredstatements="45" conditionals="18" coveredconditionals="16" methods="11" coveredmethods="11"/>
+        <metrics statements="44" coveredstatements="44" conditionals="16" coveredconditionals="16" methods="11" coveredmethods="11"/>
         <line num="15" count="1" type="stmt"/>
         <line num="16" count="1" type="stmt"/>
         <line num="17" count="1" type="stmt"/>
@@ -82,42 +82,41 @@
         <line num="22" count="12" type="cond" truecount="2" falsecount="0"/>
         <line num="24" count="4" type="stmt"/>
         <line num="27" count="1" type="stmt"/>
-        <line num="28" count="4" type="stmt"/>
-        <line num="29" count="4" type="stmt"/>
-        <line num="30" count="4" type="stmt"/>
-        <line num="31" count="9" type="stmt"/>
-        <line num="32" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="28" count="5" type="stmt"/>
+        <line num="29" count="5" type="stmt"/>
+        <line num="30" count="5" type="stmt"/>
+        <line num="31" count="12" type="stmt"/>
+        <line num="32" count="12" type="cond" truecount="2" falsecount="0"/>
         <line num="33" count="4" type="stmt"/>
         <line num="34" count="4" type="stmt"/>
-        <line num="36" count="5" type="stmt"/>
-        <line num="38" count="9" type="stmt"/>
-        <line num="40" count="4" type="stmt"/>
-        <line num="41" count="4" type="stmt"/>
-        <line num="42" count="2" type="stmt"/>
+        <line num="36" count="8" type="stmt"/>
+        <line num="38" count="12" type="stmt"/>
+        <line num="40" count="5" type="stmt"/>
+        <line num="41" count="5" type="stmt"/>
+        <line num="42" count="4" type="stmt"/>
         <line num="46" count="1" type="stmt"/>
-        <line num="47" count="44" type="cond" truecount="2" falsecount="0"/>
-        <line num="48" count="38" type="cond" truecount="2" falsecount="0"/>
-        <line num="49" count="17" type="stmt"/>
-        <line num="51" count="38" type="cond" truecount="2" falsecount="0"/>
-        <line num="52" count="28" type="stmt"/>
-        <line num="53" count="32" type="cond" truecount="2" falsecount="0"/>
-        <line num="54" count="32" type="cond" truecount="2" falsecount="0"/>
-        <line num="55" count="32" type="stmt"/>
+        <line num="47" count="54" type="cond" truecount="2" falsecount="0"/>
+        <line num="48" count="47" type="cond" truecount="2" falsecount="0"/>
+        <line num="49" count="22" type="stmt"/>
+        <line num="51" count="47" type="cond" truecount="2" falsecount="0"/>
+        <line num="52" count="34" type="stmt"/>
+        <line num="53" count="40" type="cond" truecount="2" falsecount="0"/>
+        <line num="54" count="40" type="cond" truecount="2" falsecount="0"/>
+        <line num="55" count="40" type="stmt"/>
         <line num="61" count="1" type="stmt"/>
-        <line num="62" count="12" type="stmt"/>
-        <line num="63" count="17" type="stmt"/>
-        <line num="64" count="17" type="cond" truecount="1" falsecount="1"/>
-        <line num="65" count="17" type="stmt"/>
-        <line num="70" count="1" type="stmt"/>
-        <line num="71" count="1" type="stmt"/>
-        <line num="72" count="12" type="stmt"/>
-        <line num="73" count="12" type="stmt"/>
-        <line num="74" count="12" type="stmt"/>
-        <line num="75" count="12" type="stmt"/>
-        <line num="76" count="12" type="stmt"/>
-        <line num="77" count="12" type="cond" truecount="1" falsecount="1"/>
+        <line num="62" count="10" type="stmt"/>
+        <line num="63" count="22" type="stmt"/>
+        <line num="64" count="22" type="stmt"/>
+        <line num="68" count="1" type="stmt"/>
+        <line num="69" count="1" type="stmt"/>
+        <line num="70" count="14" type="stmt"/>
+        <line num="71" count="14" type="stmt"/>
+        <line num="72" count="14" type="stmt"/>
+        <line num="73" count="14" type="stmt"/>
+        <line num="74" count="14" type="stmt"/>
+        <line num="75" count="14" type="cond" truecount="2" falsecount="0"/>
+        <line num="78" count="1" type="stmt"/>
         <line num="80" count="1" type="stmt"/>
-        <line num="82" count="1" type="stmt"/>
       </file>
       <file name="getUseStorePath.ts" path="C:\w_bimp\use-store-path\src\getUseStorePath.ts">
         <metrics statements="10" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>

@@ -60,10 +60,8 @@ const getSubscribePath = <S = any>({ getState, subscribe }: Store<S>) => {
 
   const processQueue = () => {
     while (fireQueue.length > 0) {
-      const queueFunc = fireQueue.shift();
-      if(queueFunc) {
-        queueFunc();
-      }
+      const queueFunc = fireQueue.shift() as ()=>void;
+      queueFunc();
     }
   };
 
