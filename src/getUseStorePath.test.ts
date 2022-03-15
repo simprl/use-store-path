@@ -9,13 +9,14 @@ const reducer: Reducer<any, any> = (state = {}, action) =>
 
 interface AppProps {
     store: ExStore;
-    onRender: (v: unknown) => void;
+    onRender: (v: unknown, v2: unknown) => void;
 }
 
 const App: React.FC<AppProps> = ({ store, onRender }) => {
     const { useStorePath } = store;
     const v = useStorePath<string>(['a','b']);
-    onRender(v);
+    const v2 = useStorePath<string>(undefined);
+    onRender(v, v2);
     return null;
 };
 
@@ -31,7 +32,7 @@ describe('test hook', () => {
     };
     test('create app actor', () => {
         const onRender = jest.fn();
-        const mainGhost = create(createElement(App, { store: exStore, onRender }));
+        create(createElement(App, { store: exStore, onRender }));
         expect(onRender).toBeCalledTimes(1);
         act(() => {
             store.dispatch({type: 'set', payload: 'value1' })
@@ -42,6 +43,6 @@ describe('test hook', () => {
             store.dispatch({type: 'set', payload: {a:{b:'value2'}} })
         });
         expect(onRender).toBeCalledTimes(2);
-        expect(onRender).lastCalledWith('value2');
+        expect(onRender).lastCalledWith('value2', undefined);
     });
 });

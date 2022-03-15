@@ -16,7 +16,8 @@ const getSubscribePath = <S = any>({ getState, subscribe }: Store<S>) => {
   const rootListener: Listener = { subscribes: [], children: new Map() };
   const fireQueue: QueueFunc[] = [];
 
-  const getStateByPath = (path: string[]) => {
+  const getStateByPath = (path: string[] | undefined) => {
+    if(path === undefined) return undefined;
     let state: unknown = getState();
     path.forEach((name) => {
       state = state && (state as Record<string, unknown>)[name];
@@ -24,7 +25,10 @@ const getSubscribePath = <S = any>({ getState, subscribe }: Store<S>) => {
     return state;
   }
 
-  const subscribePath = (path: string[], subscription: Subscription) => {
+  const subscribePath = (path: string[] | undefined, subscription: Subscription) => {
+    if (path === undefined) {
+      return () => {};
+    }
     let listener = rootListener;
     let curListeners = listener.children;
     path.forEach((name) => {

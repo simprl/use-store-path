@@ -132,3 +132,5 @@ When redux state changed, then iterate rootListener and compare previous and new
 If state of this node changed, then subscription add to the fireQueue, and recursive iterate children nodes.
 
 Then subscriptions one by one pull from fireQueue and call.
+
+fireQueue resolve issue when new dispatch call inside subscription.  
