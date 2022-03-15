@@ -1,11 +1,18 @@
-import {Store} from 'redux';
-
 export interface Subscription {
   (state: unknown): void
 }
 export interface Listener {
   subscribes: Subscription[],
   children: Map<string, Listener>,
+}
+
+export interface Unsubscribe {
+  (): void;
+}
+
+export interface Store<S> {
+  getState(): S;
+  subscribe(listener: () => void): Unsubscribe;
 }
 
 interface QueueFunc {

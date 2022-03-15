@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import getSubscribePath from './getSubscribePath';
-import {Store} from "redux";
+import getSubscribePath, { Store } from './getSubscribePath';
 
 export interface UseStorePath {
     <T = unknown>(path: string[]): T
