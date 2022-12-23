@@ -15,13 +15,14 @@ export interface Store<S> {
   subscribe(listener: () => void): Unsubscribe;
 }
 
-interface QueueFunc {
-  ():void;
+interface QueueItem {
+  subscription: Subscription;
+  state: unknown;
 }
 
 const getSubscribePath = <S = any>({ getState, subscribe }: Store<S>) => {
   const rootListener: Listener = { subscribes: [], children: new Map() };
-  const fireQueue: QueueFunc[] = [];
+  const fireQueue: (QueueItem | null)[] = [];
 
   const getStateByPath = (path: string[] | undefined) => {
     if(path === undefined) return undefined;
@@ -50,14 +51,22 @@ const getSubscribePath = <S = any>({ getState, subscribe }: Store<S>) => {
     });
     listener.subscribes.push(subscription);
     return () => {
-      listener.subscribes.splice(listener.subscribes.indexOf(subscription), 1);
+      const index = listener.subscribes.indexOf(subscription);
+      if (index !== -1) {
+        listener.subscribes.splice(index, 1);
+      }
+      fireQueue.forEach((queueItem, index) => {
+        if (queueItem && queueItem.subscription === subscription) {
+          fireQueue[index] = null;
+        }
+      });
     };
   };
 
   const fire = (prevState: unknown, state: unknown, { subscribes, children }: Listener) => {
     if (prevState !== state) {
       if (subscribes.length > 0) {
-        fireQueue.push(...subscribes.map((subscription) => () => subscription(state)));
+        fireQueue.push(...subscribes.map((subscription) => ({ subscription, state })));
       }
       if (children.size > 0) {
         for (const [name, listener] of children.entries()) {
@@ -71,8 +80,8 @@ const getSubscribePath = <S = any>({ getState, subscribe }: Store<S>) => {
 
   const processQueue = () => {
     while (fireQueue.length > 0) {
-      const queueFunc = fireQueue.shift() as ()=>void;
-      queueFunc();
+      const queueItem = fireQueue.shift();
+      if(queueItem) queueItem.subscription(queueItem.state);
     }
   };
 

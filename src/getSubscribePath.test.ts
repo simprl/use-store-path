@@ -96,4 +96,50 @@ describe('getSubscribePath', () => {
         clear1();
         clear2();
     });
+
+    test('subscribePath when clear from dispatch', () => {
+        const { subscribePath, getStateByPath } = obj;
+        const sequence: string[] = [];
+        const subscription2 = jest.fn((v2)=>{
+            sequence.push('subscription2');
+            store.dispatch({type: 'set', payload: {x: {y: { v3: `${v2}_from_queue3`, v2 }}} })
+            sequence.push('subscription2_1')
+
+        });
+        const subscription3 = jest.fn((v)=>sequence.push('subscription3'));
+        const subscription1 = jest.fn((v2) => {
+            sequence.push('subscription1_1')
+            store.dispatch({type: 'set', payload: {x: {y: { v3: `${v2}_from_queue1`, v2 }}} })
+            sequence.push('subscription1_2')
+            store.dispatch({type: 'set', payload: {x: {y: { v3: `${v2}_from_queue2`, v2 }}} })
+            sequence.push('subscription1_3')
+            clear3();
+            sequence.push('subscription1_4')
+            store.dispatch({type: 'set', payload: {x: {y: { v3: `${v2}_from_queue4`, v2 }}} })
+            sequence.push('subscription1_5')
+
+        });
+        const clear1 = subscribePath(['x', 'y', 'v2'], subscription1)
+        let clear2 = subscribePath(['x', 'y', 'v2'], subscription2)
+        let clear3 = subscribePath(['x', 'y', 'v3'], subscription3)
+
+
+        store.dispatch({type: 'set', payload: {x: {y: { v: 'value7', v2: 'value7'}}} })
+
+        expect(subscription1).toBeCalledTimes(1);
+
+        expect(getStateByPath(['x', 'y', 'v2'])).toBe('value7');
+        expect(sequence).toEqual(    [
+            'subscription1_1',
+            'subscription1_2',
+            'subscription1_3',
+            'subscription1_4',
+            'subscription1_5',
+            'subscription2',
+            'subscription2_1'
+        ]);
+
+        clear1();
+        clear2();
+    });
 });
